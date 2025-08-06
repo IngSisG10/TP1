@@ -1,0 +1,14 @@
+package token
+
+data class TokenPosition(val row: Int, val pos: Int)
+
+interface TokenInterface {
+    val name: String
+    val value: String
+    val row: Int
+    val position: Int
+    fun instruction(): String
+    fun getPosition(): TokenPosition {
+        return TokenPosition(row , position)
+    }
+}

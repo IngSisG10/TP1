@@ -1,0 +1,12 @@
+package token
+
+class StringLiteralToken(
+    override val value: String,
+    override val row: Int,
+    override val position: Int
+) : TokenInterface {
+    override val name: String = "string_literal"
+    override fun instruction(): String {
+        return value
+    }
+}
