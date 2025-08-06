@@ -3,7 +3,8 @@ package token
 enum class Type {
     STRING,
     BOOLEAN,
-    NUMBER
+    NUMBER,
+    ANY
 }
 
 class TypeToken(

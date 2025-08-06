@@ -61,6 +61,11 @@ class Lexer(
                     i += 7
                 }
 
+                line.startsWith("Any", i) -> {
+                    listOfTokens.add(TypeToken( Type.ANY, row, i))
+                    i += 7
+                }
+
                 c == '+' -> {
                     listOfTokens.add(OperationToken(Operation.SUM, row, i))
                     i++
