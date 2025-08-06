@@ -1,5 +1,7 @@
 package token
 
+import token.abs.TokenInterface
+
 class NumberLiteralToken(
     override val value: Number,
     override val row: Int,

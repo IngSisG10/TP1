@@ -1,5 +1,7 @@
 package token
 
+import token.abs.TokenInterface
+
 enum class Type {
     STRING,
     BOOLEAN,

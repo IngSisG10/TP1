@@ -1,5 +1,7 @@
 package token
 
+import token.abs.TokenInterface
+
 class VariableToken(
     override val value: String,
     override val row: Int,

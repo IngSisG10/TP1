@@ -1,5 +1,7 @@
 package token
 
+import token.abs.TokenInterface
+
 class EndSentenceToken(
     override val row: Int,
     override val position: Int

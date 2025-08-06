@@ -1,6 +1,7 @@
 package lexer
 
 import token.*
+import token.abs.TokenInterface
 
 class Lexer(
     private val code: String

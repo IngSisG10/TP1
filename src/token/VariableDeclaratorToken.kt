@@ -1,5 +1,7 @@
 package token
 
+import token.abs.TokenInterface
+
 
 class VariableDeclaratorToken(
     override val row: Int,

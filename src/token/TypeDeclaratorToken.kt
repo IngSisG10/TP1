@@ -1,5 +1,7 @@
 package token
 
+import token.abs.TokenInterface
+
 class TypeDeclaratorToken(
     override val row: Int,
     override val position: Int

@@ -1,4 +1,4 @@
-package token
+package token.abs
 
 data class TokenPosition(val row: Int, val pos: Int)
 
