@@ -14,7 +14,7 @@ class Lexer(
 
     private fun splitIntoLines(code: String): List<String> {
         return code
-            .split(";")
+            .split("\n")
     }
 
     private fun tokenizeLine(line: String, row: Int) {
@@ -100,6 +100,11 @@ class Lexer(
                     listOfTokens.add(PointToken(row, i))
                 }
 
+                c == ';' -> {
+                    listOfTokens.add(EndSentenceToken(row, i))
+                    i++
+                }
+
                 else -> {
                     // Detectar variables (identificadores)
                     val start = i
@@ -120,7 +125,6 @@ class Lexer(
         for ((index, line) in listOfLines.withIndex()) {
             if (line.isNotBlank()) {
                 tokenizeLine(line, index + 1)
-                listOfTokens.add(EndSentenceToken(index + 1, line.length))
             }
         }
         return listOfTokens
