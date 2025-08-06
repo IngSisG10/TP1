@@ -96,6 +96,10 @@ class Lexer(
                     i++
                 }
 
+                c == '.' -> {
+                    listOfTokens.add(PointToken(row, i))
+                }
+
                 else -> {
                     // Detectar variables (identificadores)
                     val start = i
