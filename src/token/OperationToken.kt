@@ -1,17 +1,18 @@
 package token
 
-enum class Type {
-    STRING,
-    BOOLEAN,
-    NUMBER
+enum class Operation {
+    SUM,
+    MINUS,
+    MULTIPLY,
+    DIVIDE
 }
 
-class TypeToken(
-    override val value: Type,
+class OperationToken(
+    override val value: Operation,
     override val row: Int,
     override val position: Int
 ) : TokenInterface {
-    override val name: String = "type";
+    override val name: String = "operation"
     override fun instruction(): String {
         TODO("Not yet implemented")
     }

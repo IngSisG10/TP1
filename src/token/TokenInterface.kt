@@ -4,7 +4,7 @@ data class TokenPosition(val row: Int, val pos: Int)
 
 interface TokenInterface {
     val name: String
-    val value: String
+    val value: Any
     val row: Int
     val position: Int
     fun instruction(): String

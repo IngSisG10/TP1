@@ -1,17 +1,11 @@
 package token
 
-enum class Type {
-    STRING,
-    BOOLEAN,
-    NUMBER
-}
-
-class TypeToken(
-    override val value: Type,
+class NumberLiteralToken(
+    override val value: Number,
     override val row: Int,
     override val position: Int
 ) : TokenInterface {
-    override val name: String = "type";
+    override val name: String = "number_literal"
     override fun instruction(): String {
         TODO("Not yet implemented")
     }
