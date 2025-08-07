@@ -12,7 +12,7 @@ class Lexer(
 
     private val stringRegex = Regex("\"(.*?)\"") // Finds text inside " "
 
-    private val numberRegex = Regex("-?\\d+") // Finds int numbers (positive or negative)
+    private val numberRegex = Regex("\\d+") // Finds int numbers (only positive)
 
     private fun splitIntoLines(code: String): List<String> {
         return code
@@ -45,6 +45,7 @@ class Lexer(
 
                 line.startsWith("println", i) -> {
                     listOfTokens.add(FunctionToken(Function.PRINTLN, row, i))
+                    i += 7
                 }
 
                 line.startsWith("let", i) -> {
@@ -104,6 +105,7 @@ class Lexer(
 
                 c == '.' -> {
                     listOfTokens.add(PointToken(row, i))
+                    i++
                 }
 
                 c == ';' -> {
