@@ -14,6 +14,16 @@ class Lexer(
 
     private val numberRegex = Regex("\\d+") // Finds int numbers (only positive)
 
+    fun lex(): List<TokenInterface> {
+        val listOfLines: List<String> = this.splitIntoLines(code)
+        for ((index, line) in listOfLines.withIndex()) {
+            if (line.isNotBlank()) {
+                tokenizeLine(line, index + 1)
+            }
+        }
+        return listOfTokens
+    }
+
     private fun splitIntoLines(code: String): List<String> {
         return code
             .split("\n")
@@ -31,17 +41,9 @@ class Lexer(
                     i++
                 }
 
-                stringRegex.find(line, i)?.takeIf { it.range.first == i }?.let { match ->
-                    val content = match.groupValues[1]
-                    listOfTokens.add(StringLiteralToken(content, row, i))
-                    i = match.range.last + 1
-                } != null -> {} // El cuerpo ya se ejecutó en el let
+                this.consumeStringToken(line, row, i)?.also { i = it } != null -> {}
 
-                numberRegex.find(line, i)?.takeIf { it.range.first == i }?.let { match ->
-                    val content = match.value
-                    listOfTokens.add(NumberLiteralToken(content.toInt(), row, i))
-                    i = match.range.last + 1
-                } != null -> {}
+                this.consumeNumberToken(line, row, i)?.also { i = it } != null -> {}
 
                 line.startsWith("println", i) -> {
                     listOfTokens.add(FunctionToken(Function.PRINTLN, row, i))
@@ -138,13 +140,17 @@ class Lexer(
         }
     }
 
-    fun lex(): List<TokenInterface> {
-        val listOfLines: List<String> = this.splitIntoLines(code)
-        for ((index, line) in listOfLines.withIndex()) {
-            if (line.isNotBlank()) {
-                tokenizeLine(line, index + 1)
-            }
-        }
-        return listOfTokens
+    private fun consumeStringToken(line: String, row: Int, i: Int): Int? {
+        val match = stringRegex.find(line, i)?.takeIf { it.range.first == i } ?: return null
+        val content = match.groupValues[1]
+        listOfTokens.add(StringLiteralToken(content, row, i))
+        return match.range.last + 1
+    }
+
+    private fun consumeNumberToken(line: String, row: Int, i: Int): Int? {
+        val match = numberRegex.find(line, i)?.takeIf { it.range.first == i } ?: return null
+        val content = match.value
+        listOfTokens.add(NumberLiteralToken(content.toInt(), row, i))
+        return match.range.last + 1
     }
 }
