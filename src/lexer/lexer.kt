@@ -1,6 +1,7 @@
 package lexer
 
 import token.*
+import token.Function
 import token.abs.TokenInterface
 
 class Lexer(
@@ -9,9 +10,9 @@ class Lexer(
 
     private val listOfTokens = mutableListOf<TokenInterface>()
 
-    private val stringRegex = Regex("\"(.*?)\"")
+    private val stringRegex = Regex("\"(.*?)\"") // Finds text inside " "
 
-    private val numberRegex = Regex("-?\\d+")
+    private val numberRegex = Regex("-?\\d+") // Finds int numbers (positive or negative)
 
     private fun splitIntoLines(code: String): List<String> {
         return code
@@ -30,17 +31,21 @@ class Lexer(
                     i++
                 }
 
-                stringRegex.find(line, i)?.takeIf { it.range.first == i }?.let { match -> // "____"
+                stringRegex.find(line, i)?.takeIf { it.range.first == i }?.let { match ->
                     val content = match.groupValues[1]
                     listOfTokens.add(StringLiteralToken(content, row, i))
                     i = match.range.last + 1
                 } != null -> {} // El cuerpo ya se ejecutó en el let
 
-                numberRegex.find(line, i)?.takeIf { it.range.first == i }?.let { match -> // "____"
+                numberRegex.find(line, i)?.takeIf { it.range.first == i }?.let { match ->
                     val content = match.value
                     listOfTokens.add(NumberLiteralToken(content.toInt(), row, i))
                     i = match.range.last + 1
                 } != null -> {}
+
+                line.startsWith("println", i) -> {
+                    listOfTokens.add(FunctionToken(Function.PRINTLN, row, i))
+                }
 
                 line.startsWith("let", i) -> {
                     listOfTokens.add(VariableDeclaratorToken(row, i))
@@ -64,7 +69,7 @@ class Lexer(
 
                 line.startsWith("Any", i) -> {
                     listOfTokens.add(TypeToken( Type.ANY, row, i))
-                    i += 7
+                    i += 3
                 }
 
                 c == '+' -> {
@@ -103,6 +108,16 @@ class Lexer(
 
                 c == ';' -> {
                     listOfTokens.add(EndSentenceToken(row, i))
+                    i++
+                }
+
+                c == '(' -> {
+                    listOfTokens.add(ParenthesisToken(Parenthesis.OPEN, row, i))
+                    i++
+                }
+
+                c == ')' -> {
+                    listOfTokens.add(ParenthesisToken(Parenthesis.CLOSE, row, i))
                     i++
                 }
 
