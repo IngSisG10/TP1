@@ -8,8 +8,4 @@ class EqualToken(
 ) : TokenInterface {
     override val name: String = "equal"
     override val value: String = "=";
-
-    override fun instruction(): String {
-        return value
-    }
 }

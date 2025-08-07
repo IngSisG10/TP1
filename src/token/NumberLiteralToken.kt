@@ -8,7 +8,4 @@ class NumberLiteralToken(
     override val position: Int
 ) : TokenInterface {
     override val name: String = "number_literal"
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
 }

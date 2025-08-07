@@ -8,7 +8,4 @@ class StringLiteralToken(
     override val position: Int
 ) : TokenInterface {
     override val name: String = "string_literal"
-    override fun instruction(): String {
-        return value
-    }
 }

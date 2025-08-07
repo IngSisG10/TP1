@@ -9,8 +9,4 @@ class TypeDeclaratorToken(
 
     override val name: String = "type_declarator"
     override val value: String = ":"
-
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
 }

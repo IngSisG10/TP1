@@ -15,7 +15,4 @@ class OperationToken(
     override val position: Int
 ) : TokenInterface {
     override val name: String = "operation"
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
 }

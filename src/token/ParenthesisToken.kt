@@ -13,8 +13,4 @@ class ParenthesisToken(
     override val position: Int
 ) : TokenInterface {
     override val name: String= "parenthesis"
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
-
 }

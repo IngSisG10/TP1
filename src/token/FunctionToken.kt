@@ -12,8 +12,4 @@ class FunctionToken(
     override val position: Int
 ) : TokenInterface {
     override val name: String = "function";
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
-
 }

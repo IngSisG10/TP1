@@ -8,8 +8,4 @@ class PointToken(
 ) : TokenInterface {
     override val name: String = "point"
     override val value: String = "."
-
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
 }

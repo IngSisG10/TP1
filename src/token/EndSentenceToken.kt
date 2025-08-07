@@ -8,7 +8,4 @@ class EndSentenceToken(
 ) : TokenInterface {
     override val name: String = "end_sentence"
     override val value: String = ";"
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
 }

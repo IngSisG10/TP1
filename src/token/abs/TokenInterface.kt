@@ -7,7 +7,6 @@ interface TokenInterface {
     val value: Any
     val row: Int
     val position: Int
-    fun instruction(): String
     fun getPosition(): TokenPosition {
         return TokenPosition(row , position)
     }

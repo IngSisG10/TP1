@@ -10,10 +10,5 @@ class VariableDeclaratorToken(
 
     override val name: String = "variable_declarator";
     override val value: String = "let";
-
-    //   Tendria que decirle al interpreter que tiene que guardar una variable
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
 }
 

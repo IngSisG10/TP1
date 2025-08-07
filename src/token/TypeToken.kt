@@ -15,7 +15,4 @@ class TypeToken(
     override val position: Int
 ) : TokenInterface {
     override val name: String = "type";
-    override fun instruction(): String {
-        TODO("Not yet implemented")
-    }
 }

@@ -8,8 +8,4 @@ class VariableToken(
     override val position: Int
 ) : TokenInterface {
     override val name: String = "variable"
-
-    override fun instruction(): String {
-        return value
-    }
 }
